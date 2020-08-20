@@ -7,12 +7,15 @@
           音楽検索
         </h1>
 
-        <v-text-field>
+        <v-text-field
+          v-model="keyword"
           :counter="100"
           label="アーティスト名を入力してください"
           required
+        >
+
         </v-text-field>
-        <v-btn>
+        <v-btn @click="search">
           検索
         </v-btn>
       </v-col>
@@ -23,7 +26,16 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      keyword: '',
+    }
+  },
+  methods: {
+    search() {
+      this.$router.push(`/result/${this.keyword}`)
+    }
+  }
 
 }
 </script>

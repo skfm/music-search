@@ -6,15 +6,16 @@
       dark
     >
       <div class="d-flex align-center">
-        <span>MUSIC SEARCH</span>
+        <router-link to="/" style="color:#fff; text-decoration:none;">
+          <span>MUSIC SEARCH</span>
+        </router-link>
       </div>
 
       <v-spacer></v-spacer>
 
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
         text
+        to="/"
       >
         <span class="mr-2">HOME</span>
       </v-btn>

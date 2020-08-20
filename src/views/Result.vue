@@ -18,15 +18,17 @@
           <v-card
             color="black"
             dark
+            v-for="(alubm, i) in alubms"
+            :key="i"
           >
             <div class="d-flex flex-no-wrap justify-space-between">
               <div>
                 <v-card-title
                   class="headline"
-                  v-text="title"
+                  v-text="album.collectionName"
                 ></v-card-title>
 
-                <v-card-subtitle v-text="artistName"></v-card-subtitle>
+                <v-card-subtitle v-text="album.artistName"></v-card-subtitle>
               </div>
 
               <v-avatar
@@ -34,7 +36,7 @@
                 size="125"
                 tile
               >
-                <v-img></v-img>
+                <v-img :src="alubm.artworkUr100"></v-img>
               </v-avatar>
             </div>
           </v-card>
@@ -44,13 +46,21 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data(){
     return {
-      title: 'アルバムタイトル',
-      artistName: 'アーティスト名',
-      image: '',
+      albums: [],
     }
+  },
+  created() {
+    const vm = this
+    axios.get(`https://itunes.apple.com/search?term=${this.$route.params.keyword}&entity=alubm`)
+      .then(response => {
+        console.log(response)
+        vm.albums = response.data.results
+      })
   }
 }
 </script>
